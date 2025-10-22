@@ -1,0 +1,206 @@
+/* --- 1. Reset Global y Estilo Base --- */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Colores formales */
+  background-color: #e9ecef; /* Fondo gris para contraste */
+  color: #212529; /* Color de texto principal (casi negro) */
+}
+
+/* --- 2. Contenedor Principal (#root) --- */
+#root {
+  max-width: 900px;
+  margin: 3rem auto; /* Margen vertical aumentado */
+  padding: 2rem 3rem;
+
+  /* La "tarjeta" principal blanca y elegante */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); /* Sombra más definida */
+}
+
+/* --- 3. Tipografía --- */
+h1, h2, h3, h4, h5, h6 {
+  color: #111; /* Títulos bien oscuros */
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+p {
+  line-height: 1.6;
+  color: #333;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* --- 4. Header (La línea formal superior) --- */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  /* La línea divisoria sutil */
+  border-bottom: 1px solid #e0e0e0; 
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 2rem; /* Título principal más grande */
+}
+
+/* --- 5. Estilos de Botones --- */
+button {
+  cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+/* Botón de Logout (sutil) */
+.app-header button {
+  background: none;
+  border: 1px solid #ccc;
+  color: #555;
+}
+
+.app-header button:hover {
+  background: #f8f8f8;
+}
+
+/* Botón de Login (principal) */
+button[type='submit'] {
+  width: 100%;
+  background-color: #111; /* Botón negro principal */
+  color: white;
+  border: none;
+}
+
+button[type='submit']:hover {
+  background-color: #333;
+}
+
+button[type='submit']:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* --- 6. Formulario de Login --- */
+.login-container {
+  max-width: 400px;
+  margin: 3rem auto;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Inputs formales */
+input[type='email'],
+input[type='password'] {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Importante para que el padding no rompa el ancho */
+}
+
+input[type='email']:focus,
+input[type='password']:focus {
+  outline: none;
+  border-color: #007bff; /* Un sutil acento azul al seleccionar */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.error-message {
+  color: #d93025; /* Rojo para errores */
+  margin-top: 1rem;
+}
+
+/* --- 7. Dashboard (Lista de Requisitos) --- */
+.requirement-item {
+  border: 1px solid #e0e0e0; /* La "línea" que separa cada ítem */
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.requirement-item:hover {
+  background-color: #fcfcfc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.requirement-item strong {
+  font-size: 1.1rem;
+  color: #222;
+}
+
+/* La etiqueta del tipo de requisito */
+.req-type {
+  font-size: 0.8rem;
+  background-color: #f0f0f0; /* Fondo gris para la etiqueta */
+  color: #555;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* --- 8. Vista de Detalle --- */
+.detail-view {
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* Botón de "Volver" (estilo link) */
+.detail-view button {
+  background: none;
+  border: none;
+  color: #007bff; /* Azul para links de acción */
+  font-size: 1rem;
+  padding: 0;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.detail-view button:hover {
+  text-decoration: underline;
+}
+
+.detail-view ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.detail-view li {
+  margin-bottom: 0.5rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
