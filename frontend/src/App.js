@@ -1,22 +1,60 @@
 // src/App.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LoginPage from './components/LoginPage';
 import Header from './components/Header';
 import DashboardPage from './components/DashboardPage';
 import RequirementDetail from './components/RequirementDetail';
-import { isAuthenticated, logout } from './utils/auth';
-
-// (Opcional: puedes importar CSS de App aquí)
-// import './App.css';
+import AdminSetup from './components/AdminSetup';
+import { isAuthenticated, logout, login } from './utils/auth';
+import { onAuthChange, getRequirements } from './services/firebase';
 
 function App() {
-  // 1. Estado de autenticación
   const [auth, setAuth] = useState(isAuthenticated());
-
-  // 2. Estado de "navegación"
   const [currentViewId, setCurrentViewId] = useState(null);
+  const [needsSetup, setNeedsSetup] = useState(false);
+  const [checkingSetup, setCheckingSetup] = useState(true);
 
-  // --- Funciones de manejo de estado ---
+  // Listener de Firebase Auth
+  useEffect(() => {
+    const unsubscribe = onAuthChange((user) => {
+      if (user) {
+        login(user);
+        setAuth(true);
+      } else {
+        logout();
+        setAuth(false);
+        setCurrentViewId(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // Verificar si Firestore necesita setup
+  useEffect(() => {
+    if (auth) {
+      checkFirestoreSetup();
+    }
+  }, [auth]);
+
+  const checkFirestoreSetup = async () => {
+    try {
+      setCheckingSetup(true);
+      const requirements = await getRequirements();
+      
+      if (requirements.length === 0) {
+        setNeedsSetup(true);
+      } else {
+        setNeedsSetup(false);
+      }
+    } catch (error) {
+      console.error('Error al verificar setup:', error);
+      setNeedsSetup(true);
+    } finally {
+      setCheckingSetup(false);
+    }
+  };
+
   const handleLogin = () => {
     setAuth(true);
     setCurrentViewId(null);
@@ -36,23 +74,46 @@ function App() {
     setCurrentViewId(null);
   };
 
-  // --- Renderizado condicional ---
+  const handleSetupComplete = () => {
+    setNeedsSetup(false);
+    window.location.reload();
+  };
 
-  // Si no está autenticado, mostrar solo LoginPage
   if (!auth) {
     return <LoginPage onLoginSuccess={handleLogin} />;
   }
 
-  // Si está autenticado, mostrar Header + contenido
+  if (checkingSetup) {
+    return (
+      <div className="app-container">
+        <Header onLogout={handleLogout} />
+        <main>
+          <p style={{textAlign: 'center', marginTop: '3rem'}}>
+            🔍 Verificando configuración de Firestore...
+          </p>
+        </main>
+      </div>
+    );
+  }
+
+  if (needsSetup) {
+    return (
+      <div className="app-container">
+        <Header onLogout={handleLogout} />
+        <main>
+          <AdminSetup onComplete={handleSetupComplete} />
+        </main>
+      </div>
+    );
+  }
+
   return (
     <div className="app-container">
       <Header onLogout={handleLogout} />
       <main>
         {currentViewId === null ? (
-          // Mostrar Dashboard (HU-02)
           <DashboardPage onSelectRequirement={handleSelectReq} />
         ) : (
-          // Mostrar Detalle (HU-05)
           <RequirementDetail
             requirementId={currentViewId}
             onBack={handleBackToDashboard}

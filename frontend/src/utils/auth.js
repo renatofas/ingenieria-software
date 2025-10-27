@@ -1,17 +1,34 @@
 // src/utils/auth.js
-const TOKEN_KEY = 'authToken';
+const USER_KEY = 'firebaseUser';
 
-// Guarda el token en localStorage
-export function login(token) {
-  localStorage.setItem(TOKEN_KEY, token);
+// Guarda el usuario de Firebase en localStorage
+export function login(user) {
+  const userData = {
+    uid: user.uid,
+    email: user.email,
+    accessToken: user.accessToken
+  };
+  localStorage.setItem(USER_KEY, JSON.stringify(userData));
 }
 
-// Remueve el token al cerrar sesión
+// Remueve el usuario al cerrar sesión
 export function logout() {
-  localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(USER_KEY);
 }
 
 // Verifica si el usuario está autenticado
 export function isAuthenticated() {
-  return !!localStorage.getItem(TOKEN_KEY);
+  return !!localStorage.getItem(USER_KEY);
+}
+
+// Obtiene el usuario actual
+export function getCurrentUser() {
+  const userData = localStorage.getItem(USER_KEY);
+  return userData ? JSON.parse(userData) : null;
+}
+
+// Obtiene el token de Firebase
+export function getFirebaseToken() {
+  const user = getCurrentUser();
+  return user?.accessToken || null;
 }

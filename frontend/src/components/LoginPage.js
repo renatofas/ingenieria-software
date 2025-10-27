@@ -1,6 +1,6 @@
 // src/components/LoginPage.js
 import React, { useState } from 'react';
-import { apiLogin } from '../services/api';
+import { firebaseLogin } from '../services/firebase';
 import { login } from '../utils/auth';
 
 function LoginPage({ onLoginSuccess }) {
@@ -9,20 +9,61 @@ function LoginPage({ onLoginSuccess }) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setError(null);
     setLoading(true);
 
-    apiLogin(email, password)
-      .then(data => {
-        login(data.token); // Guarda token en localStorage
-        onLoginSuccess();  // Avisa a App.js que el login fue exitoso
-      })
-      .catch(err => {
-        setError(err.message);
-        setLoading(false);
-      });
+    // Validación del dominio UAI
+    if (!email.endsWith('@alumnos.uai.cl')) {
+      setError('Debes usar un email institucional @alumnos.uai.cl');
+      setLoading(false);
+      return;
+    }
+
+    // Validación de contraseña
+    if (password.length < 8) {
+      setError('La contraseña debe tener al menos 8 caracteres');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      // 🔥 Login con Firebase
+      const userCredential = await firebaseLogin(email, password);
+      const user = userCredential.user;
+
+      // Guardar usuario en localStorage
+      login(user);
+
+      // Notificar éxito
+      onLoginSuccess();
+    } catch (err) {
+      console.error('Error en login:', err);
+      
+      // Mensajes de error personalizados
+      let errorMessage = 'Error al iniciar sesión';
+      
+      switch (err.code) {
+        case 'auth/user-not-found':
+          errorMessage = 'No existe una cuenta con este email. ¿Necesitas registrarte?';
+          break;
+        case 'auth/wrong-password':
+          errorMessage = 'Contraseña incorrecta';
+          break;
+        case 'auth/invalid-email':
+          errorMessage = 'Email inválido';
+          break;
+        case 'auth/too-many-requests':
+          errorMessage = 'Demasiados intentos fallidos. Intenta más tarde';
+          break;
+        default:
+          errorMessage = err.message;
+      }
+      
+      setError(errorMessage);
+      setLoading(false);
+    }
   };
 
   return (
@@ -57,6 +98,13 @@ function LoginPage({ onLoginSuccess }) {
         </button>
         {error && <p className="error-message">{error}</p>}
       </form>
+      
+      <div style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#666' }}>
+        <p style={{ fontSize: '0.8rem', marginTop: '0.5rem' }}>
+          📧 Usa tu email @alumnos.uai.cl<br />
+          🔒 Contraseña mínima: 8 caracteres
+        </p>
+      </div>
     </div>
   );
 }
