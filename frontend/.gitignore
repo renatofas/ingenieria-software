@@ -1,23 +1,59 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# =====================================
+#   DEPENDENCIAS
+# =====================================
+node_modules/
+package-lock.json
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# =====================================
+#   CARPETAS QUE NO QUIERES SUBIR
+# =====================================
+package/
+packages/
 
-# testing
-/coverage
+# =====================================
+#   BUILD / DISTRIBUCIÓN
+# =====================================
+dist/
+build/
+.next/
+out/
+.cache/
+.tmp/
+.parcel-cache/
 
-# production
-/build
+# =====================================
+#   ENTORNOS / CONFIGURACIONES
+# =====================================
+.env
+.env.*
+!.env.example
 
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
+# =====================================
+#   LOGS
+# =====================================
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+
+# =====================================
+#   EDITORES / SISTEMA
+# =====================================
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# =====================================
+#   COVERAGE Y TESTING
+# =====================================
+coverage/
+*.lcov
+
+# =====================================
+#   OTROS
+# =====================================
+*.eslintcache
+*.cache
