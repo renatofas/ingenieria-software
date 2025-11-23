@@ -19,7 +19,7 @@ import {
   deleteDoc
 } from 'firebase/firestore';
 
-// 🔑 Configuración de Firebase - REEMPLAZA CON TUS CREDENCIALES
+// 🔒 Configuración de Firebase - REEMPLAZA CON TUS CREDENCIALES
 const firebaseConfig = {
   apiKey: "AIzaSyAWRt_4PslF4cadnxIJDUTGz7BFaw3oQGY",
   authDomain: "ing-software-9f047.firebaseapp.com",
@@ -103,4 +103,7 @@ export const getRequirementById = async (id) => {
   }
 };
 
-export { auth, db };
+// ==========================================
+// EXPORTAR TAMBIÉN FIRESTORE HELPERS
+// ==========================================
+export { auth, db, collection, getDocs, doc, getDoc, setDoc };

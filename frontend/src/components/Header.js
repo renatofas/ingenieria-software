@@ -3,7 +3,7 @@ import React from 'react';
 import { firebaseLogout } from '../services/firebase';
 import { getCurrentUser } from '../utils/auth';
 
-function Header({ onLogout }) {
+function Header({ onLogout, currentView, onNavigate }) {
   const user = getCurrentUser();
 
   const handleLogout = async () => {
@@ -25,7 +25,25 @@ function Header({ onLogout }) {
           </p>
         )}
       </div>
-      <button onClick={handleLogout}>Cerrar Sesión</button>
+
+      {/* Menú de navegación */}
+      <nav className="header-nav">
+        <button 
+          className={`nav-button ${currentView === 'dashboard' || currentView === 'requirement-detail' ? 'active' : ''}`}
+          onClick={() => onNavigate('dashboard')}
+        >
+          📋 Requisitos
+        </button>
+        <button 
+          className={`nav-button ${currentView === 'minors' || currentView === 'minor-detail' ? 'active' : ''}`}
+          onClick={() => onNavigate('minors')}
+        >
+          🎓 Minors
+        </button>
+        <button onClick={handleLogout} className="logout-button">
+          Cerrar Sesión
+        </button>
+      </nav>
     </header>
   );
 }
