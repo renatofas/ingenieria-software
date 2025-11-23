@@ -26,6 +26,12 @@ function Header({ user, onOpenLogin, onLogout, currentView, onNavigate }) {
         >
           🎓 Minors
         </button>
+        <button
+          className={currentView === 'mallas' ? 'nav-button active' : 'nav-button'}
+          onClick={() => onNavigate('mallas')}
+        >
+          🗺️ Mallas
+        </button>
       </nav>
 
       {/* Login/Usuario a la derecha */}
