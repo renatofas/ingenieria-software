@@ -11,6 +11,7 @@ import { isAuthenticated, logout, login, getCurrentUser } from './utils/auth';
 import { onAuthChange } from './services/firebase';
 import { db } from './services/firebase';
 import { collection, getDocs } from 'firebase/firestore';
+import MallasPage from './components/MallasPage';
 
 function App() {
   // Estados de autenticación
@@ -152,33 +153,37 @@ function App() {
 
   // Renderizar vista según estado
   const renderView = () => {
-    switch (currentView) {
-      case 'dashboard':
-        return <DashboardPage onSelectRequirement={handleSelectReq} />;
-      
-      case 'requirement-detail':
-        return (
-          <RequirementDetail
-            requirementId={selectedReqId}
-            onBack={handleBackToDashboard}
-          />
-        );
-      
-      case 'minors':
-        return <MinorsPage onSelectMinor={handleSelectMinor} />;
-      
-      case 'minor-detail':
-        return (
-          <MinorDetail
-            minorId={selectedMinorId}
-            onBack={handleBackToMinors}
-          />
-        );
-      
-      default:
-        return <DashboardPage onSelectRequirement={handleSelectReq} />;
-    }
-  };
+  switch (currentView) {
+    case 'dashboard':
+      return <DashboardPage onSelectRequirement={handleSelectReq} />;
+    
+    case 'requirement-detail':
+      return (
+        <RequirementDetail
+          requirementId={selectedReqId}
+          onBack={handleBackToDashboard}
+        />
+      );
+    
+    case 'minors':
+      return <MinorsPage onSelectMinor={handleSelectMinor} />;
+    
+    case 'minor-detail':
+      return (
+        <MinorDetail
+          minorId={selectedMinorId}
+          onBack={handleBackToMinors}
+        />
+      );
+
+    // 👉 NUEVO CASO MALLAS
+    case 'mallas':
+      return <MallasPage />;
+    
+    default:
+      return <DashboardPage onSelectRequirement={handleSelectReq} />;
+  }
+};
 
   return (
     <div className="app-container">
@@ -188,8 +193,18 @@ function App() {
         onLogout={handleLogout}
         currentView={currentView}
         onNavigate={(view) => {
-          if (view === 'dashboard') handleBackToDashboard();
-          if (view === 'minors') handleGoToMinors();
+          if (view === 'dashboard') {
+            handleBackToDashboard();
+          } else if (view === 'minors') {
+            handleGoToMinors();
+          } else if (view === 'mallas') {
+            // 👉 limpiamos selecciones y vamos a Mallas
+            setSelectedReqId(null);
+            setSelectedMinorId(null);
+            setCurrentView('mallas');
+          } else {
+            setCurrentView(view);
+          }
         }}
       />
       <main>
