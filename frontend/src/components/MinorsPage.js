@@ -126,11 +126,7 @@ function MinorsPage({ onSelectMinor }) {
         </p>
       )}
 
-      {!searchTerm && (
-        <p style={{fontSize: '0.9em', color: '#666', marginBottom: '1.5rem'}}>
-          📊 Mostrando {minors.length} minors desde Firebase Firestore
-        </p>
-      )}
+
 
       {/* Grid de minors */}
       <div className="minors-grid">

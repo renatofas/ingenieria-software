@@ -117,11 +117,7 @@ function DashboardPage({ onSelectRequirement }) {
         </p>
       )}
 
-      {!searchTerm && (
-        <p style={{fontSize: '0.9em', color: '#666', marginBottom: '1rem'}}>
-          📊 Mostrando {requirements.length} requisitos desde Firebase Firestore
-        </p>
-      )}
+
 
       {/* Lista de requisitos filtrados */}
       <ul className="requirement-list">

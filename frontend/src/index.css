@@ -1,28 +1,161 @@
-/* === ESTILOS COMPLETOS - Sistema Centralización UAI === */
+/* ===================================
+   ESTUDIO MAÑÓN 4EVER - ESTILO UAI
+   Sistema de Centralización Académica
+   =================================== */
 
-/* --- 1. Reset Global y Estilo Base --- */
-body {
+/* ===================================
+   VARIABLES DE COLOR UAI
+   =================================== */
+:root {
+  /* Colores principales UAI - OFICIAL */
+  --uai-negro-principal: #1a1a1a;
+  --uai-negro-header: #1a1a1a;
+  --uai-azul-principal: #00a7e1;
+  --uai-azul-oscuro: #0891d1;
+  --uai-azul-hover: #007ab8;
+  
+  /* Colores de fondo */
+  --uai-gris-claro: #f5f5f5;
+  --uai-gris-medio: #e8e8e8;
+  --uai-gris-oscuro: #6c757d;
+  
+  /* Colores de estado */
+  --uai-rojo: #dc3545;
+  --uai-verde: #28a745;
+  --uai-amarillo: #ffc107;
+  --uai-morado: #6f42c1;
+  
+  /* Overlays */
+  --overlay-oscuro: rgba(0, 0, 0, 0.7);
+  --overlay-medio: rgba(0, 0, 0, 0.5);
+  --overlay-suave: rgba(0, 0, 0, 0.3);
+}
+
+/* ===================================
+   RESET Y BASE
+   =================================== */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
     Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #e9ecef;
+  background: var(--uai-gris-claro);
   color: #212529;
+  margin: 0;
+  line-height: 1.6;
+  min-height: 100vh;
 }
 
+/* ===================================
+   FONDO DE CAMPUS UAI
+   =================================== */
 #root {
+  /* Imagen del campus UAI oficial con overlay */
+  background-image: 
+    linear-gradient(var(--overlay-medio), var(--overlay-medio)),
+    url('https://www.uai.cl/_next/image?url=%2Ferror.jpg&w=828&q=75');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  
+  min-height: 100vh;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===================================
+   CONTENEDOR PRINCIPAL
+   =================================== */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.content-wrapper {
   max-width: 1100px;
   margin: 2rem auto;
   padding: 2rem 3rem;
   background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
 
-/* --- 2. Tipografía --- */
+/* Contenedor con fondo blanco para contenido sobre imagen del campus */
+.main-content-container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 2rem 3rem;
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+}
+
+/* Alternativa: Fondo negro semi-transparente */
+.main-content-container-dark {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 2rem 3rem;
+  background: rgba(44, 62, 80, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+.main-content-container-dark h1,
+.main-content-container-dark h2,
+.main-content-container-dark h3,
+.main-content-container-dark h4,
+.main-content-container-dark h5,
+.main-content-container-dark h6,
+.main-content-container-dark p,
+.main-content-container-dark label,
+.main-content-container-dark .search-icon {
+  color: white;
+}
+
+.main-content-container-dark .requirement-item,
+.main-content-container-dark .minor-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.main-content-container-dark .requirement-content strong {
+  color: white;
+}
+
+.main-content-container-dark .requirement-preview {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.main-content-container-dark .search-box {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.main-content-container-dark .search-input {
+  color: white;
+}
+
+.main-content-container-dark .search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ===================================
+   TIPOGRAFÍA
+   =================================== */
 h1, h2, h3, h4, h5, h6 {
-  color: #111;
+  color: #1a1a1a;
   margin-top: 0;
   margin-bottom: 1rem;
 }
@@ -37,94 +170,230 @@ ul {
   padding: 0;
 }
 
-/* --- 3. Header y Navegación --- */
+/* ===================================
+   HEADER ESTILO UAI
+   =================================== */
 .app-header {
-  display: flex;
-  justify-content: space-between;
+  background: #1a1a1a;
+  color: white;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  padding-bottom: 1.5rem;
-  margin-bottom: 2rem;
-  border-bottom: 2px solid #e0e0e0;
-  flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2rem;
 }
 
-.app-header h1 {
+.header-left h1 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.header-subtitle {
+  font-size: 0.85rem;
+  color: white;
+  font-weight: 400;
+  margin-top: 0.25rem;
 }
 
 .header-nav {
   display: flex;
   gap: 0.5rem;
-  align-items: center;
+  justify-content: center;
 }
 
+.header-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ===================================
+   BOTONES DE NAVEGACIÓN
+   =================================== */
 .nav-button {
-  background: #f8f9fa;
-  border: 2px solid #e0e0e0;
-  color: #555;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
   padding: 0.6rem 1.2rem;
   font-size: 0.95rem;
-  transition: all 0.2s;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
 }
 
 .nav-button:hover {
-  background: #e9ecef;
-  border-color: #007bff;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--uai-azul-principal);
+  transform: translateY(-2px);
 }
 
 .nav-button.active {
-  background: #007bff;
+  background: var(--uai-azul-principal);
   color: white;
-  border-color: #007bff;
+  border-color: var(--uai-azul-principal);
+  box-shadow: 0 4px 12px rgba(0, 167, 225, 0.3);
 }
 
-.logout-button {
-  background: white;
-  border: 1px solid #ccc;
-  color: #555;
-  padding: 0.6rem 1.2rem;
+/* ===================================
+   MENÚ DE USUARIO
+   =================================== */
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.logout-button:hover {
-  background: #f8f8f8;
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-/* --- 4. Botones Generales --- */
+.user-icon {
+  font-size: 1.2rem;
+  background: var(--uai-azul-principal);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  font-weight: bold;
+  color: white;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-email {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+}
+
+.user-role {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ===================================
+   BOTONES GENERALES
+   =================================== */
 button {
   cursor: pointer;
   padding: 0.75rem 1.5rem;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 1rem;
   font-weight: 600;
-  border: 1px solid transparent;
-  transition: all 0.2s ease;
+  border: none;
+  transition: all 0.3s ease;
+  font-family: inherit;
 }
 
+.btn-primary,
 button[type='submit'] {
   width: 100%;
-  background-color: #111;
+  background: var(--uai-azul-principal);
   color: white;
-  border: none;
+  box-shadow: 0 2px 4px rgba(0, 167, 225, 0.3);
 }
 
-button[type='submit']:hover {
-  background-color: #333;
+.btn-primary:hover,
+button[type='submit']:hover:not(:disabled) {
+  background: var(--uai-azul-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 167, 225, 0.4);
 }
 
 button[type='submit']:disabled {
-  background-color: #ccc;
+  background: #ccc;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
-/* --- 5. Login --- */
+.logout-button,
+.logout-button-small {
+  background: white;
+  border: 2px solid var(--uai-rojo);
+  color: var(--uai-rojo);
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+
+.logout-button:hover,
+.logout-button-small:hover {
+  background: var(--uai-rojo);
+  color: white;
+}
+
+/* ===================================
+   BOTÓN DE LOGIN EN HEADER
+   =================================== */
+.login-button-header {
+  background: var(--uai-azul-principal);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 167, 225, 0.3);
+  transition: all 0.3s;
+}
+
+.login-button-header:hover {
+  background: var(--uai-azul-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 167, 225, 0.4);
+}
+
+/* ===================================
+   LOGIN CONTAINER
+   =================================== */
 .login-container {
-  max-width: 400px;
-  margin: 3rem auto;
-  text-align: center;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 3rem 0;
 }
 
+.login-card {
+  background: white;
+  border-radius: 12px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-header h2 {
+  font-size: 1.75rem;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.login-subtitle {
+  color: var(--uai-gris-oscuro);
+  font-size: 0.9rem;
+}
+
+/* ===================================
+   FORMULARIOS
+   =================================== */
 .form-group {
   margin-bottom: 1.5rem;
   text-align: left;
@@ -134,32 +403,139 @@ button[type='submit']:disabled {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
-  color: #222;
+  color: #333;
+  font-size: 0.9rem;
 }
 
 input[type='email'],
-input[type='password'] {
+input[type='password'],
+input[type='text'] {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.875rem;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
   box-sizing: border-box;
+  transition: all 0.3s ease;
+  font-family: inherit;
 }
 
 input[type='email']:focus,
-input[type='password']:focus {
+input[type='password']:focus,
+input[type='text']:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  border-color: var(--uai-azul-principal);
+  box-shadow: 0 0 0 3px rgba(0, 167, 225, 0.1);
 }
 
+/* ===================================
+   DROPDOWN DE CARRERAS
+   =================================== */
+.carrera-select {
+  width: 100%;
+  padding: 0.875rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: white;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 12px;
+  padding-right: 2.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.carrera-select:hover {
+  border-color: var(--uai-azul-principal);
+  background-color: #f8f9ff;
+}
+
+.carrera-select:focus {
+  outline: none;
+  border-color: var(--uai-azul-principal);
+  box-shadow: 0 0 0 3px rgba(0, 167, 225, 0.1);
+  background-color: white;
+}
+
+.carrera-select option[value=""] {
+  color: #999;
+  font-style: italic;
+}
+
+.carrera-select optgroup {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--uai-azul-principal);
+  background-color: #f8f9ff;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.carrera-select option {
+  padding: 0.5rem;
+  font-size: 0.95rem;
+  color: #333;
+  background-color: white;
+}
+
+.carrera-select option:hover {
+  background-color: #f0f0f0;
+}
+
+.carrera-select:disabled {
+  background-color: #f5f5f5;
+  border-color: #ddd;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.carrera-select:not([value=""]) {
+  border-color: var(--uai-verde);
+  background-color: #f0fff4;
+}
+
+.carrera-select:not([value=""]):focus {
+  border-color: var(--uai-azul-principal);
+  background-color: white;
+}
+
+.carrera-help-text {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.carrera-help-text::before {
+  content: "ℹ️";
+  font-size: 0.9rem;
+}
+
+/* ===================================
+   MENSAJES DE ERROR
+   =================================== */
 .error-message {
-  color: #d93025;
+  color: var(--uai-rojo);
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-left: 4px solid var(--uai-rojo);
+  padding: 0.875rem;
+  border-radius: 6px;
   margin-top: 1rem;
+  font-size: 0.9rem;
 }
 
-/* --- 6. Búsqueda --- */
+/* ===================================
+   BÚSQUEDA
+   =================================== */
 .search-container {
   margin-bottom: 1.5rem;
 }
@@ -168,7 +544,7 @@ input[type='password']:focus {
   position: relative;
   display: flex;
   align-items: center;
-  background: #f8f9fa;
+  background: white;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
   padding: 0.5rem 1rem;
@@ -176,15 +552,14 @@ input[type='password']:focus {
 }
 
 .search-box:focus-within {
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-  background: white;
+  border-color: var(--uai-azul-principal);
+  box-shadow: 0 0 0 3px rgba(0, 167, 225, 0.1);
 }
 
 .search-icon {
   font-size: 1.2rem;
   margin-right: 0.75rem;
-  color: #666;
+  color: var(--uai-gris-oscuro);
 }
 
 .search-input {
@@ -229,9 +604,10 @@ input[type='password']:focus {
   font-size: 0.9rem;
   color: #666;
   margin-bottom: 1rem;
-  padding: 0.5rem 1rem;
-  background: #f8f9fa;
-  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  background: #e7f3ff;
+  border-radius: 6px;
+  border-left: 4px solid var(--uai-azul-principal);
 }
 
 .no-results {
@@ -243,32 +619,36 @@ input[type='password']:focus {
 
 .clear-filter-button {
   margin-top: 1rem;
-  background: #007bff;
+  background: var(--uai-azul-principal);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
 }
 
 .clear-filter-button:hover {
-  background: #0056b3;
+  background: var(--uai-azul-hover);
+  transform: translateY(-2px);
 }
 
-/* --- 7. Lista de Requisitos --- */
+/* ===================================
+   LISTA DE REQUISITOS
+   =================================== */
 .requirement-item {
-  border: 1px solid #e0e0e0;
-  padding: 1rem 1.5rem;
+  border: 2px solid #e0e0e0;
+  padding: 1.5rem;
   margin-bottom: 1rem;
-  border-radius: 4px;
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
+  background: white;
 }
 
 .requirement-item:hover {
-  background-color: #fcfcfc;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-color: var(--uai-azul-principal);
+  box-shadow: 0 4px 12px rgba(0, 167, 225, 0.15);
   transform: translateY(-2px);
 }
 
@@ -278,68 +658,106 @@ input[type='password']:focus {
 
 .requirement-content strong {
   font-size: 1.1rem;
-  color: #222;
+  color: #1a1a1a;
   display: block;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .requirement-preview {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: #666;
   margin: 0.5rem 0 0 0;
-  font-style: italic;
+  line-height: 1.5;
 }
 
 .req-type {
   font-size: 0.8rem;
-  background-color: #f0f0f0;
-  color: #555;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
+  padding: 0.4rem 0.875rem;
+  border-radius: 20px;
   text-transform: uppercase;
   font-weight: 600;
   white-space: nowrap;
+  letter-spacing: 0.5px;
 }
 
-/* --- 8. Vista de Detalle --- */
+/* Colores de badges por tipo */
+.req-type[data-type="CREDITOS_ACADEMICOS"],
+.badge-creditos {
+  background: #e7f3ff;
+  color: #0056b3;
+}
+
+.req-type[data-type="CURSO_ESPECIFICO"],
+.badge-curso {
+  background: #d4edda;
+  color: #155724;
+}
+
+.req-type[data-type="ACTIVIDAD_EXTRACURRICULAR"],
+.badge-actividad {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.req-type[data-type="REQUISITO_ADMINISTRATIVO"],
+.badge-administrativo {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.req-type[data-type="TRABAJO_TITULACION"],
+.badge-titulacion {
+  background: #e2d9f3;
+  color: #6f42c1;
+}
+
+/* ===================================
+   VISTA DE DETALLE
+   =================================== */
 .detail-view {
-  animation: fadeIn 0.3s ease-in;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .back-button {
-  background: none;
-  border: none;
-  color: #007bff;
-  font-size: 1rem;
-  padding: 0;
-  margin-bottom: 1.5rem;
+  background: transparent;
+  border: 2px solid var(--uai-gris-oscuro);
+  color: var(--uai-gris-oscuro);
+  padding: 0.625rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
-  transition: color 0.2s;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
 }
 
 .back-button:hover {
-  color: #0056b3;
-  text-decoration: underline;
+  background: var(--uai-gris-oscuro);
+  color: white;
+  transform: translateX(-4px);
 }
 
 .detail-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   margin-bottom: 2rem;
-  padding-bottom: 1rem;
+  padding-bottom: 1.5rem;
   border-bottom: 2px solid #e0e0e0;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .detail-header h2 {
-  margin: 0;
+  font-size: 2rem;
+  color: #1a1a1a;
   flex: 1;
+  margin: 0;
 }
 
 .tipo-badge {
   color: white;
   padding: 0.5rem 1rem;
-  border-radius: 6px;
+  border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -355,21 +773,25 @@ input[type='password']:focus {
 
 .detail-section h3 {
   margin-top: 0;
-  color: #333;
-  font-size: 1.2rem;
+  color: #1a1a1a;
+  font-size: 1.3rem;
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .descripcion-text {
   font-size: 1rem;
-  line-height: 1.7;
+  line-height: 1.8;
   color: #444;
 }
 
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
 }
 
 .info-item {
@@ -377,31 +799,40 @@ input[type='password']:focus {
   padding: 1rem;
   border-radius: 6px;
   border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .info-label {
   display: block;
   font-size: 0.85rem;
-  color: #666;
-  margin-bottom: 0.5rem;
+  color: var(--uai-gris-oscuro);
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .info-value {
   display: block;
-  font-size: 1rem;
-  color: #222;
+  font-size: 1.1rem;
+  color: #1a1a1a;
   font-weight: 500;
 }
 
 .obligatorio-si {
-  color: #28a745;
+  color: var(--uai-verde);
+  font-weight: 600;
 }
 
 .obligatorio-no {
-  color: #ffc107;
+  color: var(--uai-amarillo);
+  font-weight: 600;
 }
 
+/* ===================================
+   DOCUMENTOS Y CONTACTO
+   =================================== */
 .documentos-container {
   display: flex;
   flex-direction: column;
@@ -409,68 +840,116 @@ input[type='password']:focus {
 }
 
 .documento-button {
+  width: 100%;
   background: white;
-  border: 2px solid #007bff;
-  color: #007bff;
-  padding: 1rem;
+  border: 2px solid var(--uai-azul-principal);
+  color: var(--uai-azul-principal);
+  padding: 1rem 1.5rem;
   text-align: left;
-  font-size: 1rem;
-  border-radius: 6px;
-  transition: all 0.2s;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .documento-button:hover {
-  background: #007bff;
+  background: var(--uai-azul-principal);
   color: white;
+  transform: translateX(8px);
 }
 
 .documento-nota {
   font-size: 0.85rem;
-  color: #666;
+  color: var(--uai-gris-oscuro);
   font-style: italic;
+  margin: 0.5rem 0 0 0;
+}
+
+/* Nota de Intranet */
+.intranet-note {
+  padding: 1rem;
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-left: 4px solid #ffc107;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+}
+
+.intranet-note p {
   margin: 0;
+  font-size: 0.9rem;
+  color: #856404;
+  line-height: 1.5;
+}
+
+.intranet-note strong {
+  color: #664d03;
+  font-weight: 600;
 }
 
 .info-adicional {
   background: #e7f3ff;
-  border-left: 4px solid #007bff;
+  border-left: 4px solid var(--uai-azul-principal);
 }
 
 .contacto-buttons {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   margin-top: 1rem;
 }
 
 .contacto-button {
-  flex: 1;
+  padding: 1rem 1.5rem;
   background: white;
-  border: 2px solid #007bff;
-  color: #007bff;
-  padding: 0.75rem;
-  transition: all 0.2s;
+  border: 2px solid var(--uai-azul-principal);
+  color: var(--uai-azul-principal);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
 }
 
 .contacto-button:hover {
-  background: #007bff;
+  background: var(--uai-azul-principal);
   color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 167, 225, 0.3);
 }
 
 .detail-footer {
   text-align: center;
-  padding-top: 1rem;
+  padding-top: 1.5rem;
+  margin-top: 2rem;
   border-top: 1px solid #e0e0e0;
-  color: #666;
+  color: var(--uai-gris-oscuro);
   font-size: 0.85rem;
 }
 
+/* ===================================
+   ESTADOS DE CARGA Y ERRORES
+   =================================== */
 .loading-container,
 .error-container {
   text-align: center;
   padding: 3rem 2rem;
 }
 
-/* --- 9. MINORS - Grid y Cards --- */
+.loading-container p {
+  font-size: 1.1rem;
+  color: var(--uai-gris-oscuro);
+}
+
+/* ===================================
+   MINORS - GRID Y CARDS
+   =================================== */
 .minors-page {
   animation: fadeIn 0.3s ease-in;
 }
@@ -481,12 +960,29 @@ input[type='password']:focus {
 
 .page-header h2 {
   margin-bottom: 0.5rem;
+  color: #1a1a1a;
 }
 
 .page-subtitle {
   font-size: 1rem;
-  color: #666;
+  color: white;
   margin: 0;
+  background: rgba(0, 167, 225, 0.1);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border-left: 4px solid #00a7e1;
+}
+
+/* Texto informativo en páginas */
+.info-text,
+.firebase-count {
+  font-size: 0.9rem;
+  color: white;
+  background: rgba(0, 167, 225, 0.15);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border-left: 4px solid #00a7e1;
+  margin: 1rem 0;
 }
 
 .minors-grid {
@@ -507,7 +1003,7 @@ input[type='password']:focus {
 }
 
 .minor-card:hover {
-  border-color: #6f42c1;
+  border-color: var(--uai-morado);
   box-shadow: 0 4px 12px rgba(111, 66, 193, 0.15);
   transform: translateY(-4px);
 }
@@ -524,10 +1020,11 @@ input[type='password']:focus {
   font-size: 1.2rem;
   flex: 1;
   line-height: 1.3;
+  color: #1a1a1a;
 }
 
 .minor-badge {
-  background: #6f42c1;
+  background: var(--uai-morado);
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 12px;
@@ -566,11 +1063,13 @@ input[type='password']:focus {
 }
 
 .minor-link {
-  color: #6f42c1;
+  color: var(--uai-morado);
   font-weight: 600;
 }
 
-/* --- 10. MINORS - Detail View --- */
+/* ===================================
+   MINORS - DETAIL VIEW
+   =================================== */
 .minor-detail {
   max-width: 900px;
   margin: 0 auto;
@@ -586,7 +1085,7 @@ input[type='password']:focus {
   background: white;
   padding: 1.5rem;
   border-radius: 6px;
-  border-left: 4px solid #6f42c1;
+  border-left: 4px solid var(--uai-morado);
 }
 
 .cursos-grid {
@@ -604,14 +1103,14 @@ input[type='password']:focus {
 }
 
 .curso-card:hover {
-  border-color: #6f42c1;
+  border-color: var(--uai-morado);
   box-shadow: 0 2px 8px rgba(111, 66, 193, 0.1);
 }
 
 .curso-codigo {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #6f42c1;
+  color: var(--uai-morado);
   margin-bottom: 0.5rem;
 }
 
@@ -621,178 +1120,9 @@ input[type='password']:focus {
   line-height: 1.4;
 }
 
-/* --- 11. Animaciones --- */
-@keyframes fadeIn {
-  from { 
-    opacity: 0; 
-    transform: translateY(10px); 
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
-}
-
-/* --- 12. Responsive --- */
-@media (max-width: 768px) {
-  #root {
-    margin: 1rem;
-    padding: 1.5rem;
-  }
-
-  .app-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .header-nav {
-    width: 100%;
-    flex-wrap: wrap;
-  }
-
-  .nav-button,
-  .logout-button {
-    flex: 1;
-    min-width: 120px;
-  }
-
-  .detail-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .tipo-badge,
-  .minor-badge {
-    margin-top: 1rem;
-  }
-
-  .info-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .contacto-buttons {
-    flex-direction: column;
-  }
-
-  .minors-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .cursos-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .search-input {
-    font-size: 0.9rem;
-  }
-}
-
-/* === ESTILOS ADICIONALES PARA ACCESO PÚBLICO === */
-
-/* --- Header Actualizado --- */
-.app-header {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  padding-bottom: 1.5rem;
-  margin-bottom: 2rem;
-  border-bottom: 2px solid #e0e0e0;
-  gap: 2rem;
-}
-
-.header-left h1 {
-  margin: 0;
-  font-size: 1.5rem;
-}
-
-.header-nav {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-}
-
-.header-right {
-  display: flex;
-  justify-content: flex-end;
-}
-
-/* --- Botón de Login en Header --- */
-.login-button-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  padding: 0.7rem 1.5rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-  transition: all 0.3s;
-}
-
-.login-button-header:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-}
-
-/* --- Menú de Usuario --- */
-.user-menu {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.5rem 1rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-  border: 1px solid #e0e0e0;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.user-icon {
-  font-size: 1.5rem;
-  background: white;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #e0e0e0;
-}
-
-.user-details {
-  display: flex;
-  flex-direction: column;
-}
-
-.user-email {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #333;
-}
-
-.user-role {
-  font-size: 0.75rem;
-  color: #666;
-}
-
-.logout-button-small {
-  background: white;
-  border: 1px solid #dc3545;
-  color: #dc3545;
-  padding: 0.5rem 1rem;
-  font-size: 0.85rem;
-  transition: all 0.2s;
-}
-
-.logout-button-small:hover {
-  background: #dc3545;
-  color: white;
-}
-
-/* --- Modal Overlay --- */
+/* ===================================
+   MODAL
+   =================================== */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -808,7 +1138,6 @@ input[type='password']:focus {
   backdrop-filter: blur(4px);
 }
 
-/* --- Modal Content --- */
 .modal-content {
   background: white;
   border-radius: 12px;
@@ -821,18 +1150,6 @@ input[type='password']:focus {
   animation: slideUp 0.3s ease-out;
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* --- Modal Close Button --- */
 .modal-close {
   position: absolute;
   top: 1rem;
@@ -858,7 +1175,6 @@ input[type='password']:focus {
   transform: rotate(90deg);
 }
 
-/* --- Modal Header --- */
 .modal-header {
   padding: 2rem 2rem 1rem 2rem;
   text-align: center;
@@ -868,6 +1184,7 @@ input[type='password']:focus {
 .modal-header h2 {
   margin: 0 0 0.5rem 0;
   font-size: 1.5rem;
+  color: #1a1a1a;
 }
 
 .modal-subtitle {
@@ -876,7 +1193,6 @@ input[type='password']:focus {
   margin: 0;
 }
 
-/* --- Modal Form --- */
 .modal-form {
   padding: 2rem;
 }
@@ -889,46 +1205,23 @@ input[type='password']:focus {
   margin-bottom: 2rem;
 }
 
-.modal-form label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #333;
-  font-size: 0.9rem;
-}
-
-.modal-form input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 6px;
-  font-size: 1rem;
-  transition: all 0.2s;
-  box-sizing: border-box;
-}
-
-.modal-form input:focus {
-  outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-}
-
 .modal-submit-button {
   width: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--uai-azul-principal);
   color: white;
   border: none;
   padding: 1rem;
   font-size: 1rem;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s;
 }
 
 .modal-submit-button:hover:not(:disabled) {
+  background: var(--uai-azul-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 167, 225, 0.4);
 }
 
 .modal-submit-button:disabled {
@@ -936,7 +1229,6 @@ input[type='password']:focus {
   cursor: not-allowed;
 }
 
-/* --- Modal Footer --- */
 .modal-footer {
   padding: 0 2rem 1.5rem 2rem;
   text-align: center;
@@ -947,7 +1239,7 @@ input[type='password']:focus {
 .link-button {
   background: none;
   border: none;
-  color: #667eea;
+  color: var(--uai-azul-principal);
   font-weight: 600;
   cursor: pointer;
   padding: 0;
@@ -956,10 +1248,9 @@ input[type='password']:focus {
 }
 
 .link-button:hover {
-  color: #764ba2;
+  color: var(--uai-azul-hover);
 }
 
-/* --- Modal Info --- */
 .modal-info {
   background: #f8f9fa;
   padding: 1rem 2rem;
@@ -972,11 +1263,6 @@ input[type='password']:focus {
   margin: 0;
 }
 
-.modal-info strong {
-  color: #333;
-}
-
-/* --- Error Message en Modal --- */
 .modal-form .error-message {
   background: #fee;
   border: 1px solid #fcc;
@@ -986,11 +1272,48 @@ input[type='password']:focus {
   font-size: 0.9rem;
 }
 
-/* --- Responsive Modal --- */
+/* ===================================
+   ANIMACIONES
+   =================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
 @media (max-width: 768px) {
+  #root {
+    background-attachment: scroll; /* Mejor rendimiento en móvil */
+  }
+
+  .content-wrapper {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
   .app-header {
     grid-template-columns: 1fr;
     gap: 1rem;
+    padding: 1rem;
   }
 
   .header-left,
@@ -1001,15 +1324,51 @@ input[type='password']:focus {
 
   .header-nav {
     justify-content: flex-start;
+    flex-wrap: wrap;
   }
 
   .header-right {
     justify-content: flex-start;
   }
 
+  .nav-button {
+    flex: 1;
+    min-width: 120px;
+  }
+
   .user-menu {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .detail-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .tipo-badge,
+  .minor-badge {
+    margin-top: 1rem;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contacto-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .minors-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cursos-grid {
+    grid-template-columns: 1fr;
   }
 
   .modal-content {
@@ -1024,137 +1383,53 @@ input[type='password']:focus {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
-}
 
-/* ========================================
-   DROPDOWN DE CARRERAS CON GRUPOS
-   ======================================== */
+  .search-input {
+    font-size: 16px; /* Evita zoom en iOS */
+  }
 
-/* --- Select de Carrera --- */
-.carrera-select {
-  width: 100%;
-  padding: 0.75rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-family: inherit;
-  background-color: white;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.75rem center;
-  background-size: 12px;
-  padding-right: 2.5rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-.carrera-select:hover {
-  border-color: #667eea;
-  background-color: #f8f9ff;
-}
-
-.carrera-select:focus {
-  outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-  background-color: white;
-}
-
-/* --- Placeholder (opción vacía) --- */
-.carrera-select option[value=""] {
-  color: #999;
-  font-style: italic;
-}
-
-/* --- Grupos (optgroup) --- */
-.carrera-select optgroup {
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: #667eea;
-  background-color: #f8f9ff;
-  padding: 0.5rem;
-  margin-top: 0.25rem;
-}
-
-/* --- Opciones individuales --- */
-.carrera-select option {
-  padding: 0.5rem;
-  font-size: 0.95rem;
-  color: #333;
-  background-color: white;
-}
-
-.carrera-select option:hover {
-  background-color: #f0f0f0;
-}
-
-/* --- Estado disabled --- */
-.carrera-select:disabled {
-  background-color: #f5f5f5;
-  border-color: #ddd;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-/* --- Versión móvil optimizada --- */
-@media (max-width: 768px) {
   .carrera-select {
     font-size: 16px; /* Evita zoom en iOS */
     padding: 0.85rem;
   }
 }
 
-/* --- Estilos adicionales para el form group --- */
-.form-group {
-  margin-bottom: 1.5rem;
+@media (max-width: 480px) {
+  .header-left h1 {
+    font-size: 1.2rem;
+  }
+
+  .header-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .requirement-content strong {
+    font-size: 1rem;
+  }
+
+  .detail-header h2 {
+    font-size: 1.3rem;
+  }
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #333;
-  font-size: 0.9rem;
+/* ===================================
+   UTILIDADES
+   =================================== */
+.text-center {
+  text-align: center;
 }
 
-.form-group label::after {
-  content: " *";
-  color: #dc3545;
-  font-weight: 700;
-}
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
 
-/* --- Indicador visual cuando está seleccionado --- */
-.carrera-select:not([value=""]) {
-  border-color: #28a745;
-  background-color: #f0fff4;
-}
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
 
-.carrera-select:not([value=""]):focus {
-  border-color: #667eea;
-  background-color: white;
-}
-
-/* --- Animación al seleccionar --- */
-.carrera-select option:checked {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  font-weight: 600;
-}
-
-/* --- Texto de ayuda debajo del select --- */
-.carrera-help-text {
-  font-size: 0.8rem;
-  color: #666;
-  margin-top: 0.4rem;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-
-.carrera-help-text::before {
-  content: "ℹ️";
-  font-size: 0.9rem;
-}
+.p-1 { padding: 0.5rem; }
+.p-2 { padding: 1rem; }
+.p-3 { padding: 1.5rem; }
+.p-4 { padding: 2rem; }

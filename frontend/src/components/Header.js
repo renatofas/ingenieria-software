@@ -7,7 +7,7 @@ function Header({ user, onOpenLogin, onLogout, currentView, onNavigate }) {
       {/* Logo y título a la izquierda */}
       <div className="header-left">
         <h1 style={{ fontSize: '1.5em', margin: 0 }}>Estudio Mañón 4ever</h1>
-        <p style={{ fontSize: '0.85em', color: '#666', margin: '0.25rem 0 0 0' }}>
+        <p style={{ fontSize: '0.85em', color: 'white', margin: '0.25rem 0 0 0' }}>
           Sistema de Centralización Académica UAI
         </p>
       </div>

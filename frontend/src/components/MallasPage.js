@@ -155,7 +155,7 @@ export default function MallasPage() {
       )}
 
       {!searchTerm && (
-        <p style={{fontSize: '0.9em', color: '#666', marginBottom: '1.5rem'}}>
+        <p style={{fontSize: '0.9em', color: 'white', marginBottom: '1.5rem'}}>
           📊 Mostrando {CARRERAS.length} carreras (fuente: sitio oficial UAI)
         </p>
       )}
