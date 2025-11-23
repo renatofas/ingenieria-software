@@ -1,36 +1,40 @@
 // src/App.js
 import React, { useState, useEffect } from 'react';
-import LoginPage from './components/LoginPage';
 import Header from './components/Header';
 import DashboardPage from './components/DashboardPage';
 import RequirementDetail from './components/RequirementDetail';
 import MinorsPage from './components/MinorsPage';
 import MinorDetail from './components/MinorDetail';
+import LoginModal from './components/LoginModal';
 import AdminSetup from './components/AdminSetup';
-import { isAuthenticated, logout, login } from './utils/auth';
-import { onAuthChange, collection, getDocs } from './services/firebase';
+import { isAuthenticated, logout, login, getCurrentUser } from './utils/auth';
+import { onAuthChange } from './services/firebase';
 import { db } from './services/firebase';
+import { collection, getDocs } from 'firebase/firestore';
 
 function App() {
-  const [auth, setAuth] = useState(isAuthenticated());
-  const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'minors', 'menciones'
+  // Estados de autenticación
+  const [user, setUser] = useState(getCurrentUser());
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  
+  // Estados de navegación
+  const [currentView, setCurrentView] = useState('dashboard');
   const [selectedReqId, setSelectedReqId] = useState(null);
   const [selectedMinorId, setSelectedMinorId] = useState(null);
+  
+  // Estados de setup
   const [needsSetup, setNeedsSetup] = useState(false);
   const [checkingSetup, setCheckingSetup] = useState(true);
 
   // Listener de Firebase Auth
   useEffect(() => {
-    const unsubscribe = onAuthChange((user) => {
-      if (user) {
-        login(user);
-        setAuth(true);
+    const unsubscribe = onAuthChange((firebaseUser) => {
+      if (firebaseUser) {
+        login(firebaseUser);
+        setUser(getCurrentUser());
       } else {
         logout();
-        setAuth(false);
-        setCurrentView('dashboard');
-        setSelectedReqId(null);
-        setSelectedMinorId(null);
+        setUser(null);
       }
     });
 
@@ -39,16 +43,13 @@ function App() {
 
   // Verificar si Firestore necesita setup
   useEffect(() => {
-    if (auth) {
-      checkFirestoreSetup();
-    }
-  }, [auth]);
+    checkFirestoreSetup();
+  }, []);
 
   const checkFirestoreSetup = async () => {
     try {
       setCheckingSetup(true);
       
-      // Verificar si hay requisitos
       const requisitosCol = collection(db, 'requisitos');
       const snapshot = await getDocs(requisitosCol);
       
@@ -65,17 +66,18 @@ function App() {
     }
   };
 
-  const handleLogin = () => {
-    setAuth(true);
-    setCurrentView('dashboard');
+  const handleLoginSuccess = () => {
+    setShowLoginModal(false);
+    setUser(getCurrentUser());
   };
 
   const handleLogout = () => {
     logout();
-    setAuth(false);
-    setCurrentView('dashboard');
-    setSelectedReqId(null);
-    setSelectedMinorId(null);
+    setUser(null);
+  };
+
+  const handleOpenLogin = () => {
+    setShowLoginModal(true);
   };
 
   // Navegación de Requisitos
@@ -110,16 +112,17 @@ function App() {
     window.location.reload();
   };
 
-  // Si no está autenticado
-  if (!auth) {
-    return <LoginPage onLoginSuccess={handleLogin} />;
-  }
-
   // Si está verificando setup
   if (checkingSetup) {
     return (
       <div className="app-container">
-        <Header onLogout={handleLogout} currentView={currentView} onNavigate={setCurrentView} />
+        <Header 
+          user={user}
+          onOpenLogin={handleOpenLogin}
+          onLogout={handleLogout}
+          currentView={currentView}
+          onNavigate={setCurrentView}
+        />
         <main>
           <p style={{textAlign: 'center', marginTop: '3rem'}}>
             🔍 Verificando configuración de Firestore...
@@ -133,7 +136,13 @@ function App() {
   if (needsSetup) {
     return (
       <div className="app-container">
-        <Header onLogout={handleLogout} currentView={currentView} onNavigate={setCurrentView} />
+        <Header 
+          user={user}
+          onOpenLogin={handleOpenLogin}
+          onLogout={handleLogout}
+          currentView={currentView}
+          onNavigate={setCurrentView}
+        />
         <main>
           <AdminSetup onComplete={handleSetupComplete} />
         </main>
@@ -174,7 +183,9 @@ function App() {
   return (
     <div className="app-container">
       <Header 
-        onLogout={handleLogout} 
+        user={user}
+        onOpenLogin={handleOpenLogin}
+        onLogout={handleLogout}
         currentView={currentView}
         onNavigate={(view) => {
           if (view === 'dashboard') handleBackToDashboard();
@@ -184,6 +195,14 @@ function App() {
       <main>
         {renderView()}
       </main>
+
+      {/* Modal de Login/Registro */}
+      {showLoginModal && (
+        <LoginModal 
+          onClose={() => setShowLoginModal(false)}
+          onLoginSuccess={handleLoginSuccess}
+        />
+      )}
     </div>
   );
 }
