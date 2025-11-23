@@ -132,7 +132,7 @@ function MinorDetail({ minorId, onBack }) {
           </button>
           <button 
             className="contacto-button"
-            onClick={() => window.open('https://www.uai.cl/carreras/pregrado/facultad-de-ingenieria-y-ciencias/', '_blank')}
+            onClick={() => window.open('https://alumnosfic.uai.cl/', '_blank')}
           >
             🌐 Sitio Web FIC
           </button>

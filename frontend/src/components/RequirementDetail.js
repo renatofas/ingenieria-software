@@ -122,12 +122,31 @@ function RequirementDetail({ requirementId, onBack }) {
       <div className="detail-section">
         <h3>📄 Documentos Relacionados</h3>
         <div className="documentos-container">
-          <button className="documento-button">
+          {/* Reglamento Oficial PDF */}
+          <button 
+            className="documento-button"
+            onClick={() => window.open('https://alumno.uai.cl/assets/uploads/2024/04/reglamentos-uai-2024.pdf', '_blank')}
+          >
             📥 Descargar Reglamento Oficial (PDF)
           </button>
-          <button className="documento-button">
-            📥 Formulario de Solicitud (PDF)
-          </button>
+          
+          {/* Nota sobre formulario en Intranet */}
+          <div style={{
+            padding: '1rem',
+            background: '#fff3cd',
+            border: '1px solid #ffc107',
+            borderRadius: '6px',
+            marginTop: '0.5rem'
+          }}>
+            <p style={{
+              margin: 0,
+              fontSize: '0.9rem',
+              color: '#856404'
+            }}>
+              📋 <strong>Formulario de Solicitud:</strong> El formulario de solicitud se realiza directamente dentro de la Intranet UAI.
+            </p>
+          </div>
+          
           <p className="documento-nota">
             💡 Los documentos se abrirán en una nueva pestaña
           </p>
@@ -139,10 +158,24 @@ function RequirementDetail({ requirementId, onBack }) {
         <h3>💬 ¿Necesitas más información?</h3>
         <p>Contacta a tu coordinador académico o visita el portal de autoservicio UAI.</p>
         <div className="contacto-buttons">
-          <button className="contacto-button">
+          {/* Botón Contactar Coordinación - Abre cliente de email */}
+          <button 
+            className="contacto-button"
+            onClick={() => {
+              const email = 'secretariadepregrado@uai.cl';
+              const subject = `Consulta sobre Requisito: ${req.titulo}`;
+              const body = `Hola,%0D%0A%0D%0AMe gustaría obtener más información sobre el requisito "${req.titulo}".%0D%0A%0D%0AGracias.`;
+              window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${body}`;
+            }}
+          >
             📧 Contactar Coordinación
           </button>
-          <button className="contacto-button">
+          
+          {/* Botón Portal UAI - Abre sitio web */}
+          <button 
+            className="contacto-button"
+            onClick={() => window.open('https://www.uai.cl/', '_blank')}
+          >
             🌐 Portal UAI
           </button>
         </div>
