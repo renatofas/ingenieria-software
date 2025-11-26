@@ -52,9 +52,11 @@ function RequirementDetail({ requirementId, onBack }) {
   if (loading) {
     return (
       <div className="detail-view">
-        <button onClick={onBack} className="back-button">← Volver a la lista</button>
+        <button onClick={onBack} className="back-button">
+          <i className="bi bi-arrow-left"></i> Volver a la lista
+        </button>
         <div className="loading-container">
-          <p>🔄 Cargando detalle desde Firestore...</p>
+          <p><i className="bi bi-arrow-repeat"></i> Cargando detalle desde Firestore...</p>
         </div>
       </div>
     );
@@ -63,10 +65,12 @@ function RequirementDetail({ requirementId, onBack }) {
   if (error || !req) {
     return (
       <div className="detail-view">
-        <button onClick={onBack} className="back-button">← Volver a la lista</button>
+        <button onClick={onBack} className="back-button">
+          <i className="bi bi-arrow-left"></i> Volver a la lista
+        </button>
         <div className="error-container">
           <p className="error-message">
-            ❌ {error || 'Error: Requisito no encontrado.'}
+            <i className="bi bi-x-circle"></i> {error || 'Error: Requisito no encontrado.'}
           </p>
         </div>
       </div>
@@ -77,7 +81,7 @@ function RequirementDetail({ requirementId, onBack }) {
     <div className="detail-view">
       {/* Botón de volver */}
       <button onClick={onBack} className="back-button">
-        ← Volver a la lista
+        <i className="bi bi-arrow-left"></i> Volver a la lista
       </button>
 
       {/* Header con título y badge */}
@@ -93,18 +97,18 @@ function RequirementDetail({ requirementId, onBack }) {
 
       {/* Descripción principal */}
       <div className="detail-section">
-        <h3>📋 Descripción</h3>
+        <h3><i className="bi bi-clipboard-check"></i> Descripción</h3>
         <p className="descripcion-text">{req.descripcion}</p>
       </div>
 
       {/* Información importante */}
       <div className="detail-section">
-        <h3>ℹ️ Información Importante</h3>
+        <h3><i className="bi bi-info-circle"></i> Información Importante</h3>
         <div className="info-grid">
           <div className="info-item">
             <span className="info-label">Obligatorio:</span>
             <span className={`info-value ${req.esObligatorio ? 'obligatorio-si' : 'obligatorio-no'}`}>
-              {req.esObligatorio ? '✅ Sí' : '⚠️ No'}
+              {req.esObligatorio ? <><i className="bi bi-check-circle-fill"></i> Sí</> : <><i className="bi bi-exclamation-triangle-fill"></i> No</>}
             </span>
           </div>
           <div className="info-item">
@@ -120,14 +124,14 @@ function RequirementDetail({ requirementId, onBack }) {
 
       {/* Sección de documentos */}
       <div className="detail-section">
-        <h3>📄 Documentos Relacionados</h3>
+        <h3><i className="bi bi-file-earmark-text"></i> Documentos Relacionados</h3>
         <div className="documentos-container">
           {/* Reglamento Oficial PDF */}
           <button 
             className="documento-button"
             onClick={() => window.open('https://alumno.uai.cl/assets/uploads/2024/04/reglamentos-uai-2024.pdf', '_blank')}
           >
-            📥 Descargar Reglamento Oficial (PDF)
+            <i className="bi bi-download"></i> Descargar Reglamento Oficial (PDF)
           </button>
           
           {/* Nota sobre formulario en Intranet */}
@@ -143,19 +147,19 @@ function RequirementDetail({ requirementId, onBack }) {
               fontSize: '0.9rem',
               color: '#856404'
             }}>
-              📋 <strong>Formulario de Solicitud:</strong> El formulario de solicitud se realiza directamente dentro de la Intranet UAI.
+              <i className="bi bi-clipboard-data"></i> <strong>Formulario de Solicitud:</strong> El formulario de solicitud se realiza directamente dentro de la Intranet UAI.
             </p>
           </div>
           
           <p className="documento-nota">
-            💡 Los documentos se abrirán en una nueva pestaña
+            <i className="bi bi-lightbulb"></i> Los documentos se abrirán en una nueva pestaña
           </p>
         </div>
       </div>
 
       {/* Información adicional */}
       <div className="detail-section info-adicional">
-        <h3>💬 ¿Necesitas más información?</h3>
+        <h3><i className="bi bi-chat-dots"></i> ¿Necesitas más información?</h3>
         <p>Contacta a tu coordinador académico o visita el portal de autoservicio UAI.</p>
         <div className="contacto-buttons">
           {/* Botón Contactar Coordinación - Abre cliente de email */}
@@ -168,7 +172,7 @@ function RequirementDetail({ requirementId, onBack }) {
               window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${body}`;
             }}
           >
-            📧 Contactar Coordinación
+            <i className="bi bi-envelope"></i> Contactar Coordinación
           </button>
           
           {/* Botón Portal UAI - Abre sitio web */}
@@ -176,7 +180,7 @@ function RequirementDetail({ requirementId, onBack }) {
             className="contacto-button"
             onClick={() => window.open('https://www.uai.cl/', '_blank')}
           >
-            🌐 Portal UAI
+            <i className="bi bi-globe"></i> Portal UAI
           </button>
         </div>
       </div>
@@ -184,7 +188,7 @@ function RequirementDetail({ requirementId, onBack }) {
       {/* Footer con metadata */}
       <div className="detail-footer">
         <p>
-          🔥 Información cargada desde Firestore | 
+          <i className="bi bi-fire"></i> Información cargada desde Firestore | 
           Última actualización: {new Date().toLocaleDateString('es-CL')}
         </p>
       </div>

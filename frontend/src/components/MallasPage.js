@@ -115,7 +115,7 @@ export default function MallasPage() {
     <div className="minors-page">
       {/* HEADER IGUAL QUE MINORS */}
       <div className="page-header">
-        <h2>📘 Mallas de Carreras UAI</h2>
+        <h2><i className="bi bi-journal-text"></i> Mallas de Carreras UAI</h2>
         <p className="page-subtitle">
           Explora las mallas oficiales de todas las carreras disponibles en la UAI.
         </p>
@@ -124,7 +124,7 @@ export default function MallasPage() {
       {/* BUSCADOR IGUAL QUE MINORS */}
       <div className="search-container">
         <div className="search-box">
-          <span className="search-icon">🔍</span>
+          <span className="search-icon"><i className="bi bi-search"></i></span>
           <input
             type="text"
             className="search-input"
@@ -138,7 +138,7 @@ export default function MallasPage() {
               onClick={clearSearch}
               title="Limpiar búsqueda"
             >
-              ✕
+              <i className="bi bi-x-lg"></i>
             </button>
           )}
         </div>
@@ -148,15 +148,15 @@ export default function MallasPage() {
       {searchTerm && (
         <p className="search-results-info">
           {filteredCarreras.length === 0 
-            ? `❌ No se encontraron carreras con "${searchTerm}"`
-            : `📊 Mostrando ${filteredCarreras.length} de ${CARRERAS.length} carreras`
+            ? <><i className="bi bi-x-circle"></i> No se encontraron carreras con "{searchTerm}"</>
+            : <><i className="bi bi-bar-chart-fill"></i> Mostrando {filteredCarreras.length} de {CARRERAS.length} carreras</>
           }
         </p>
       )}
 
       {!searchTerm && (
         <p style={{fontSize: '0.9em', color: 'white', marginBottom: '1.5rem'}}>
-          📊 Mostrando {CARRERAS.length} carreras (fuente: sitio oficial UAI)
+          <i className="bi bi-bar-chart-fill"></i> Mostrando {CARRERAS.length} carreras (fuente: sitio oficial UAI)
         </p>
       )}
 
@@ -164,7 +164,7 @@ export default function MallasPage() {
       <div className="minors-grid">
         {filteredCarreras.length === 0 ? (
           <div className="no-results">
-            <p>🔍 No se encontraron carreras que coincidan con tu búsqueda.</p>
+            <p><i className="bi bi-search"></i> No se encontraron carreras que coincidan con tu búsqueda.</p>
             <button onClick={clearSearch} className="clear-filter-button">
               Limpiar búsqueda
             </button>
@@ -182,7 +182,7 @@ export default function MallasPage() {
               </div>
 
               <p className="minor-facultad">
-                🏛️ Carrera UAI
+                <i className="bi bi-building"></i> Carrera UAI
               </p>
 
               <p className="minor-description">
@@ -191,10 +191,10 @@ export default function MallasPage() {
 
               <div className="minor-footer">
                 <span className="minor-cursos">
-                  🌐 Sitio oficial UAI
+                  <i className="bi bi-globe"></i> Sitio oficial UAI
                 </span>
                 <span className="minor-link">
-                  Ver malla →
+                  Ver malla <i className="bi bi-arrow-right"></i>
                 </span>
               </div>
             </div>

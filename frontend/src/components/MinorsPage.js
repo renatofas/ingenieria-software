@@ -59,7 +59,7 @@ function MinorsPage({ onSelectMinor }) {
   if (loading) {
     return (
       <div className="minors-page">
-        <p>🔥 Cargando minors desde Firestore...</p>
+        <p><i className="bi bi-fire"></i> Cargando minors desde Firestore...</p>
       </div>
     );
   }
@@ -87,7 +87,7 @@ function MinorsPage({ onSelectMinor }) {
   return (
     <div className="minors-page">
       <div className="page-header">
-        <h2>🎓 Minors Disponibles FIC</h2>
+        <h2><i className="bi bi-mortarboard-fill"></i> Minors Disponibles FIC</h2>
         <p className="page-subtitle">
           Explora los programas de especialización disponibles para estudiantes de Ingeniería Civil
         </p>
@@ -96,7 +96,7 @@ function MinorsPage({ onSelectMinor }) {
       {/* Barra de búsqueda */}
       <div className="search-container">
         <div className="search-box">
-          <span className="search-icon">🔍</span>
+          <span className="search-icon"><i className="bi bi-search"></i></span>
           <input
             type="text"
             className="search-input"
@@ -110,7 +110,7 @@ function MinorsPage({ onSelectMinor }) {
               onClick={clearSearch}
               title="Limpiar búsqueda"
             >
-              ✕
+              <i className="bi bi-x-lg"></i>
             </button>
           )}
         </div>
@@ -120,8 +120,8 @@ function MinorsPage({ onSelectMinor }) {
       {searchTerm && (
         <p className="search-results-info">
           {filteredMinors.length === 0 
-            ? `❌ No se encontraron minors con "${searchTerm}"`
-            : `📊 Mostrando ${filteredMinors.length} de ${minors.length} minors`
+            ? <><i className="bi bi-x-circle"></i> No se encontraron minors con "{searchTerm}"</>
+            : <><i className="bi bi-bar-chart-fill"></i> Mostrando {filteredMinors.length} de {minors.length} minors</>
           }
         </p>
       )}
@@ -132,7 +132,7 @@ function MinorsPage({ onSelectMinor }) {
       <div className="minors-grid">
         {filteredMinors.length === 0 ? (
           <div className="no-results">
-            <p>🔍 No se encontraron minors que coincidan con tu búsqueda.</p>
+            <p><i className="bi bi-search"></i> No se encontraron minors que coincidan con tu búsqueda.</p>
             <button onClick={clearSearch} className="clear-filter-button">
               Limpiar búsqueda
             </button>
@@ -150,7 +150,7 @@ function MinorsPage({ onSelectMinor }) {
               </div>
               
               <p className="minor-facultad">
-                🏛️ {minor.facultad}
+                <i className="bi bi-building"></i> {minor.facultad}
               </p>
               
               <p className="minor-description">
@@ -159,10 +159,10 @@ function MinorsPage({ onSelectMinor }) {
               
               <div className="minor-footer">
                 <span className="minor-cursos">
-                  📚 {minor.cursos.length} cursos
+                  <i className="bi bi-book"></i> {minor.cursos.length} cursos
                 </span>
                 <span className="minor-link">
-                  Ver detalles →
+                  Ver detalles <i className="bi bi-arrow-right"></i>
                 </span>
               </div>
             </div>

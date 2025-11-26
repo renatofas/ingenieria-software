@@ -29,7 +29,6 @@ function LoginPage({ onLoginSuccess }) {
     }
 
     try {
-      // 🔥 Login con Firebase
       const userCredential = await firebaseLogin(email, password);
       const user = userCredential.user;
 
@@ -101,8 +100,8 @@ function LoginPage({ onLoginSuccess }) {
       
       <div style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#666' }}>
         <p style={{ fontSize: '0.8rem', marginTop: '0.5rem' }}>
-          📧 Usa tu email @alumnos.uai.cl<br />
-          🔒 Contraseña mínima: 8 caracteres
+          <i className="bi bi-envelope"></i> Usa tu email @alumnos.uai.cl<br />
+          <i className="bi bi-lock"></i> Contraseña mínima: 8 caracteres
         </p>
       </div>
     </div>

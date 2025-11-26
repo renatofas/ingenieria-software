@@ -39,9 +39,11 @@ function MinorDetail({ minorId, onBack }) {
   if (loading) {
     return (
       <div className="detail-view">
-        <button onClick={onBack} className="back-button">← Volver a minors</button>
+        <button onClick={onBack} className="back-button">
+          <i className="bi bi-arrow-left"></i> Volver a minors
+        </button>
         <div className="loading-container">
-          <p>🔄 Cargando minor desde Firestore...</p>
+          <p><i className="bi bi-arrow-repeat"></i> Cargando minor desde Firestore...</p>
         </div>
       </div>
     );
@@ -50,10 +52,12 @@ function MinorDetail({ minorId, onBack }) {
   if (error || !minor) {
     return (
       <div className="detail-view">
-        <button onClick={onBack} className="back-button">← Volver a minors</button>
+        <button onClick={onBack} className="back-button">
+          <i className="bi bi-arrow-left"></i> Volver a minors
+        </button>
         <div className="error-container">
           <p className="error-message">
-            ❌ {error || 'Error: Minor no encontrado.'}
+            <i className="bi bi-x-circle"></i> {error || 'Error: Minor no encontrado.'}
           </p>
         </div>
       </div>
@@ -64,7 +68,7 @@ function MinorDetail({ minorId, onBack }) {
     <div className="detail-view minor-detail">
       {/* Botón de volver */}
       <button onClick={onBack} className="back-button">
-        ← Volver a minors
+        <i className="bi bi-arrow-left"></i> Volver a minors
       </button>
 
       {/* Header */}
@@ -72,7 +76,7 @@ function MinorDetail({ minorId, onBack }) {
         <div>
           <h2>{minor.nombre}</h2>
           <p className="minor-facultad-large">
-            🏛️ {minor.facultad}
+            <i className="bi bi-building"></i> {minor.facultad}
           </p>
         </div>
         <span className="tipo-badge" style={{ backgroundColor: '#6f42c1' }}>
@@ -82,13 +86,13 @@ function MinorDetail({ minorId, onBack }) {
 
       {/* Descripción */}
       <div className="detail-section">
-        <h3>📋 Descripción del Programa</h3>
+        <h3><i className="bi bi-clipboard-check"></i> Descripción del Programa</h3>
         <p className="descripcion-text">{minor.descripcion}</p>
       </div>
 
       {/* Requisitos */}
       <div className="detail-section">
-        <h3>📝 Requisitos para Obtener el Minor</h3>
+        <h3><i className="bi bi-pencil-square"></i> Requisitos para Obtener el Minor</h3>
         <div className="requisitos-box">
           <p><strong>{minor.requisitos}</strong></p>
           <p style={{fontSize: '0.9em', color: '#666', marginTop: '0.5rem'}}>
@@ -99,7 +103,7 @@ function MinorDetail({ minorId, onBack }) {
 
       {/* Lista de cursos */}
       <div className="detail-section">
-        <h3>📚 Cursos del Minor ({minor.cursos.length})</h3>
+        <h3><i className="bi bi-book"></i> Cursos del Minor ({minor.cursos.length})</h3>
         <div className="cursos-grid">
           {minor.cursos.map((curso, index) => (
             <div key={index} className="curso-card">
@@ -112,7 +116,7 @@ function MinorDetail({ minorId, onBack }) {
 
       {/* Información de contacto */}
       <div className="detail-section info-adicional">
-        <h3>💬 ¿Tienes dudas sobre este Minor?</h3>
+        <h3><i className="bi bi-chat-dots"></i> ¿Tienes dudas sobre este Minor?</h3>
         <div className="info-grid">
           <div className="info-item">
             <span className="info-label">Coordinador:</span>
@@ -128,20 +132,20 @@ function MinorDetail({ minorId, onBack }) {
             className="contacto-button"
             onClick={() => window.open(`mailto:${minor.contacto}`, '_blank')}
           >
-            📧 Enviar Email
+            <i className="bi bi-envelope"></i> Enviar Email
           </button>
           <button 
             className="contacto-button"
             onClick={() => window.open('https://alumnosfic.uai.cl/', '_blank')}
           >
-            🌐 Sitio Web FIC
+            <i className="bi bi-globe"></i> Sitio Web FIC
           </button>
         </div>
       </div>
 
       {/* Información adicional */}
       <div className="detail-section" style={{background: '#fff3cd', borderLeft: '4px solid #ffc107'}}>
-        <h3>💡 Información Importante</h3>
+        <h3><i className="bi bi-lightbulb"></i> Información Importante</h3>
         <ul style={{margin: 0, paddingLeft: '1.5rem'}}>
           <li>Los minors complementan tu formación profesional</li>
           <li>Puedes cursar el minor desde 3º año</li>
@@ -153,7 +157,7 @@ function MinorDetail({ minorId, onBack }) {
       {/* Footer */}
       <div className="detail-footer">
         <p>
-          🔥 Información cargada desde Firestore | 
+          <i className="bi bi-fire"></i> Información cargada desde Firestore | 
           Minor #{minor.idMinor} | 
           Última actualización: {new Date().toLocaleDateString('es-CL')}
         </p>

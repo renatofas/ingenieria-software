@@ -37,7 +37,7 @@ function AdminSetup({ onComplete }) {
       borderRadius: '8px',
       textAlign: 'center'
     }}>
-      <h2>🔧 Configuración Inicial</h2>
+      <h2><i className="bi bi-wrench"></i> Configuración Inicial</h2>
       <p>Parece que tu base de datos Firestore está vacía.</p>
       <p>Click en el botón para poblarla con los datos oficiales de la UAI:</p>
       
@@ -55,7 +55,7 @@ function AdminSetup({ onComplete }) {
           cursor: loading ? 'not-allowed' : 'pointer'
         }}
       >
-        {loading ? '⏳ Poblando base de datos...' : '🌱 Poblar Firestore con Datos Reales'}
+        {loading ? <><i className="bi bi-hourglass-split"></i> Poblando base de datos...</> : <><i className="bi bi-database-fill-add"></i> Poblar Firestore con Datos Reales</>}
       </button>
 
       {stats && (
@@ -67,12 +67,12 @@ function AdminSetup({ onComplete }) {
           textAlign: 'left'
         }}>
           <p style={{margin: '0.5rem 0', fontWeight: 'bold'}}>
-            📊 Datos poblados:
+            <i className="bi bi-bar-chart-fill"></i> Datos poblados:
           </p>
           <ul style={{margin: '0.5rem 0', paddingLeft: '2rem'}}>
-            <li>✅ {stats.requisitos} Requisitos de 5º año</li>
-            <li>✅ {stats.minors} Minors FIC</li>
-            <li>✅ {stats.menciones} Menciones disponibles</li>
+            <li><i className="bi bi-check-circle-fill"></i> {stats.requisitos} Requisitos de 5º año</li>
+            <li><i className="bi bi-check-circle-fill"></i> {stats.minors} Minors FIC</li>
+            <li><i className="bi bi-check-circle-fill"></i> {stats.menciones} Menciones disponibles</li>
           </ul>
         </div>
       )}
@@ -93,9 +93,9 @@ function AdminSetup({ onComplete }) {
         <p><strong>¿Qué hace esto?</strong></p>
         <p>Crea en Firestore:</p>
         <ul style={{textAlign: 'left', display: 'inline-block'}}>
-          <li>📋 6 Requisitos de paso a 5º año</li>
-          <li>🎓 7 Minors oficiales FIC (con cursos reales)</li>
-          <li>🏆 3 Menciones de Ingeniería Civil</li>
+          <li><i className="bi bi-clipboard-check"></i> 6 Requisitos de paso a 5º año</li>
+          <li><i className="bi bi-mortarboard-fill"></i> 7 Minors oficiales FIC (con cursos reales)</li>
+          <li><i className="bi bi-trophy-fill"></i> 3 Menciones de Ingeniería Civil</li>
         </ul>
         <p style={{marginTop: '1rem', fontStyle: 'italic'}}>
           Todos los datos son oficiales de la UAI 2024

@@ -7,7 +7,7 @@ function DashboardPage({ onSelectRequirement }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  // 🔍 NUEVO: Estado para la búsqueda
+  // Estado para la búsqueda
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function DashboardPage({ onSelectRequirement }) {
     loadRequirements();
   }, []);
 
-  // 🔍 NUEVO: Función para filtrar requisitos según búsqueda
+  // Función para filtrar requisitos según búsqueda
   const filteredRequirements = requirements.filter(req => {
     const searchLower = searchTerm.toLowerCase();
     return (
@@ -42,12 +42,12 @@ function DashboardPage({ onSelectRequirement }) {
     );
   });
 
-  // 🔍 NUEVO: Manejar cambio en búsqueda
+  // Manejar cambio en búsqueda
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  // 🔍 NUEVO: Limpiar búsqueda
+  // Limpiar búsqueda
   const clearSearch = () => {
     setSearchTerm('');
   };
@@ -55,7 +55,7 @@ function DashboardPage({ onSelectRequirement }) {
   if (loading) {
     return (
       <div className="dashboard">
-        <p>Cargando requisitos desde Firestore... 🔥</p>
+        <p>Cargando requisitos desde Firestore... <i className="bi bi-fire"></i></p>
       </div>
     );
   }
@@ -84,10 +84,10 @@ function DashboardPage({ onSelectRequirement }) {
     <div className="dashboard">
       <h2>Requisitos de Paso a 5º Año</h2>
       
-      {/* 🔍 NUEVO: Barra de búsqueda */}
+      {/* Barra de búsqueda */}
       <div className="search-container">
         <div className="search-box">
-          <span className="search-icon">🔍</span>
+          <span className="search-icon"><i className="bi bi-search"></i></span>
           <input
             type="text"
             className="search-input"
@@ -101,29 +101,27 @@ function DashboardPage({ onSelectRequirement }) {
               onClick={clearSearch}
               title="Limpiar búsqueda"
             >
-              ✕
+              <i className="bi bi-x-lg"></i>
             </button>
           )}
         </div>
       </div>
 
-      {/* 🔍 NUEVO: Mostrar resultados de búsqueda */}
+      {/* Mostrar resultados de búsqueda */}
       {searchTerm && (
         <p className="search-results-info">
           {filteredRequirements.length === 0 
-            ? `❌ No se encontraron requisitos con "${searchTerm}"`
-            : `📊 Mostrando ${filteredRequirements.length} de ${requirements.length} requisitos`
+            ? <><i className="bi bi-x-circle"></i> No se encontraron requisitos con "{searchTerm}"</>
+            : <><i className="bi bi-bar-chart-fill"></i> Mostrando {filteredRequirements.length} de {requirements.length} requisitos</>
           }
         </p>
       )}
-
-
 
       {/* Lista de requisitos filtrados */}
       <ul className="requirement-list">
         {filteredRequirements.length === 0 ? (
           <li className="no-results">
-            <p>🔍 No se encontraron requisitos que coincidan con tu búsqueda.</p>
+            <p><i className="bi bi-search"></i> No se encontraron requisitos que coincidan con tu búsqueda.</p>
             <button onClick={clearSearch} className="clear-filter-button">
               Limpiar búsqueda
             </button>

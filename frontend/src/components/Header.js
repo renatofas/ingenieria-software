@@ -18,19 +18,19 @@ function Header({ user, onOpenLogin, onLogout, currentView, onNavigate }) {
           className={`nav-button ${currentView === 'dashboard' || currentView === 'requirement-detail' ? 'active' : ''}`}
           onClick={() => onNavigate('dashboard')}
         >
-          📋 Requisitos
+          <i className="bi bi-clipboard-check"></i> Requisitos
         </button>
         <button 
           className={`nav-button ${currentView === 'minors' || currentView === 'minor-detail' ? 'active' : ''}`}
           onClick={() => onNavigate('minors')}
         >
-          🎓 Minors
+          <i className="bi bi-mortarboard-fill"></i> Minors
         </button>
         <button
           className={currentView === 'mallas' ? 'nav-button active' : 'nav-button'}
           onClick={() => onNavigate('mallas')}
         >
-          🗺️ Mallas
+          <i className="bi bi-map"></i> Mallas
         </button>
       </nav>
 
@@ -39,7 +39,7 @@ function Header({ user, onOpenLogin, onLogout, currentView, onNavigate }) {
         {user ? (
           <div className="user-menu">
             <div className="user-info">
-              <span className="user-icon">👤</span>
+              <span className="user-icon"><i className="bi bi-person-circle"></i></span>
               <div className="user-details">
                 <span className="user-email">{user.email}</span>
                 <span className="user-role">Estudiante</span>
@@ -51,7 +51,7 @@ function Header({ user, onOpenLogin, onLogout, currentView, onNavigate }) {
           </div>
         ) : (
           <button onClick={onOpenLogin} className="login-button-header">
-            🔐 Iniciar Sesión
+            <i className="bi bi-lock"></i> Iniciar Sesión
           </button>
         )}
       </div>

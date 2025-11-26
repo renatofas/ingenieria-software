@@ -126,7 +126,7 @@ function App() {
         />
         <main>
           <p style={{textAlign: 'center', marginTop: '3rem'}}>
-            🔍 Verificando configuración de Firestore...
+            <i className="bi bi-search"></i> Verificando configuración de Firestore...
           </p>
         </main>
       </div>
@@ -176,7 +176,6 @@ function App() {
         />
       );
 
-    // 👉 NUEVO CASO MALLAS
     case 'mallas':
       return <MallasPage />;
     
@@ -198,7 +197,6 @@ function App() {
           } else if (view === 'minors') {
             handleGoToMinors();
           } else if (view === 'mallas') {
-            // 👉 limpiamos selecciones y vamos a Mallas
             setSelectedReqId(null);
             setSelectedMinorId(null);
             setCurrentView('mallas');

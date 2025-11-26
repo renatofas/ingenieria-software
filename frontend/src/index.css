@@ -720,8 +720,8 @@ input[type='text']:focus {
 
 .back-button {
   background: transparent;
-  border: 2px solid var(--uai-gris-oscuro);
-  color: var(--uai-gris-oscuro);
+  border: 2px solid white;
+  color: white;
   padding: 0.625rem 1.25rem;
   border-radius: 6px;
   font-weight: 600;
@@ -731,7 +731,7 @@ input[type='text']:focus {
 }
 
 .back-button:hover {
-  background: var(--uai-gris-oscuro);
+  background: var(--uai-azul-principal);
   color: white;
   transform: translateX(-4px);
 }
@@ -1077,7 +1077,7 @@ input[type='text']:focus {
 
 .minor-facultad-large {
   font-size: 1rem;
-  color: #666;
+  color:white;
   margin: 0.5rem 0 0 0;
 }
 

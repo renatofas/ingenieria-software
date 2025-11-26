@@ -176,10 +176,17 @@ function LoginModal({ onClose, onLoginSuccess }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}>✕</button>
+        <button className="modal-close" onClick={onClose}>
+          <i className="bi bi-x-lg"></i>
+        </button>
         
         <div className="modal-header">
-          <h2>{mode === 'login' ? '🔐 Iniciar Sesión' : '📝 Crear Cuenta'}</h2>
+          <h2>
+            {mode === 'login' 
+              ? <><i className="bi bi-lock"></i> Iniciar Sesión</> 
+              : <><i className="bi bi-pencil-square"></i> Crear Cuenta</>
+            }
+          </h2>
           <p className="modal-subtitle">
             {mode === 'login' 
               ? 'Accede con tu email institucional UAI' 
@@ -312,7 +319,7 @@ function LoginModal({ onClose, onLoginSuccess }) {
 
         <div className="modal-info">
           <p>
-            <strong>💡 Nota:</strong> El login es opcional. Puedes navegar libremente sin crear una cuenta.
+            <strong><i className="bi bi-lightbulb"></i> Nota:</strong> El login es opcional. Puedes navegar libremente sin crear una cuenta.
           </p>
         </div>
       </div>
